@@ -14,6 +14,6 @@ public interface PackageRepository extends CrudRepository<Package, Integer> {
     @Query(value = "SELECT * FROM PACKAGE WHERE name = ?1 and code = ?2", nativeQuery = true)
     Package findByNameAndCode(String name, String code);
 
-    @Query(value = "SELECT * FROM PACKAGE WHERE drone_serial_number = ?1", nativeQuery = true)
-    List<Package> findBySerialNumber(String serialNumber);
+    @Query(value = "SELECT * FROM PACKAGE WHERE drone_serial_number = ?1 and package_status = ?2", nativeQuery = true)
+    List<Package> findBySerialNumber(String serialNumber, String status);
 }

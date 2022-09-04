@@ -39,6 +39,10 @@ public class Package {
     @NotBlank(message = "Package loaded timestamp is required.")
     private String timestamp;
 
+    @Column
+    @NotBlank(message = "Status is required")
+    private String packageStatus;
+
     public void setName(String name) {
         this.name = name;
     }
@@ -81,6 +85,14 @@ public class Package {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public void setPackageStatus(String packageStatus) {
+        this.packageStatus = packageStatus;
+    }
+
+    public String getPackageStatus() {
+        return packageStatus;
     }
 
     public String getTimestamp() {

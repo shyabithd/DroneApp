@@ -10,6 +10,7 @@ import com.transport.repositories.DroneRepository;
 import com.transport.repositories.PackageRepository;
 import com.transport.utils.DateTimeService;
 import com.transport.utils.DroneState;
+import com.transport.utils.PackageStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -93,6 +94,7 @@ public class DroneService {
         aPackages.forEach(aPackage -> {
             aPackage.setDrone(drone);
             aPackage.setTimestamp(timestamp);
+            aPackage.setPackageStatus(PackageStatus.Inprogress.toString());
             packageRepository.save(aPackage);
         });
         drone.setDroneState(DroneState.LOADED.toString());
@@ -108,7 +110,7 @@ public class DroneService {
         }
 
         List<Package> packageList =  drone.getDroneState().equals(DroneState.LOADED.toString()) ?
-                packageRepository.findBySerialNumber(serialNumber) : new ArrayList<>();
+                packageRepository.findBySerialNumber(serialNumber, PackageStatus.Inprogress.toString()) : new ArrayList<>();
 
         return packageList.stream()
                 .map(aPackage -> {

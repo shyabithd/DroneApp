@@ -12,5 +12,6 @@ CREATE TABLE PACKAGE (
     code VARCHAR(20),
     img_name VARCHAR(100),
     drone_serial_number VARCHAR(100),
-    timestamp VARCHAR(30)
+    timestamp VARCHAR(30),
+    package_status VARCHAR(20)
 );
